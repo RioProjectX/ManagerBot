@@ -65,7 +65,7 @@ RUN apt update && apt upgrade -y && \
 RUN pip3 install --upgrade pip setuptools
 
 # Copy Python Requirements to /root/AnkiVector
-RUN git clone -b shiken https://github.com/Damantha126/The-Anki-Vector /root/AnkiVector
+RUN git clone -b shiken https://github.com/RioProjectX/ManagerBot /root/AnkiVector
 WORKDIR /root/AnkiVector
 
 #Copy config file to /root/AnkiVector/AnkiVector
