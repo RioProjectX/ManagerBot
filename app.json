@@ -1,5 +1,5 @@
 {
-      "name": "The Anki Vector",
+      "name": "Manager Bot",
       "description": "An Anime themed Telegram group management bot.",
       "logo": "https://telegra.ph/file/e10a45d0433a1ab6fed7b.jpg",
       "keywords": [
@@ -9,7 +9,7 @@
          "manager",
          "Ankivector"
       ],   
-   "repository": "https://github.com/Damantha126/The-Anki-Vector",
+   "repository": "https://github.com/RioProjectX/ManagerBot",
    "addons": [
       {
          "options": {
@@ -180,6 +180,6 @@
       "manager",
       "daisy"
    ],
-   "name": "Ankivector",
-   "repository": "https://github.com/Damantha126/The-Anki-Vector"
+   "name": "ManagerBot",
+   "repository": "https://github.com/RioProjectX/ManagerBot"
 }
