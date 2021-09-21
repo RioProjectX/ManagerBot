@@ -45,7 +45,7 @@ def add_chat(update: Update, context: CallbackContext):
         ses_id = str(ses.id)
         expires = str(ses.expires)
         sql.set_ses(chat.id, ses_id, expires)
-        msg.reply_text("AI successfully enabled for this chat!")
+        msg.reply_text("RioRobot AI successfully enabled for this chat!")
         message = (
             f"<b>{html.escape(chat.title)}:</b>\n"
             f"#AI_ENABLED\n"
@@ -53,7 +53,7 @@ def add_chat(update: Update, context: CallbackContext):
         )
         return message
     else:
-        msg.reply_text("AI is already enabled for this chat!")
+        msg.reply_text("RioRobot AI is already enabled for this chat!")
         return ""
 
 
@@ -66,11 +66,11 @@ def remove_chat(update: Update, context: CallbackContext):
     user = update.effective_user
     is_chat = sql.is_chat(chat.id)
     if not is_chat:
-        msg.reply_text("AI isn't enabled here in the first place!")
+        msg.reply_text("RioRobot AI isn't enabled here in the first place!")
         return ""
     else:
         sql.rem_chat(chat.id)
-        msg.reply_text("AI disabled successfully!")
+        msg.reply_text("RioRobot AI disabled successfully!")
         message = (
             f"<b>{html.escape(chat.title)}:</b>\n"
             f"#AI_DISABLED\n"
