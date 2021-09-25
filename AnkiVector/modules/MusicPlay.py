@@ -57,7 +57,7 @@ channel is also can be used instead of c ( /cplay = /channelplay )
 * ⚫️More tools⚫️ *
 
 • /admincache: Updates admin info of your group. Try if bot isn't recognize admin
-• /userbotjoin: Invite @AnkivectorMusicbot Userbot to your chat 
+• /userbotjoin: Invite @rio1robot Userbot to your chat 
  
 * 🔷Assisten🔷 *
 
@@ -65,6 +65,6 @@ channel is also can be used instead of c ( /cplay = /channelplay )
 
 * 🔸Bot🔸 *
 
-@TheAnkiVectorMusicBot
+@rio1robot
 """
 __mod_name__ = "Music Play"
