@@ -366,7 +366,7 @@ def AnkiVector_about_callback(update, context):
     if query.data == "aboutmanu_":
         query.message.edit_text(
             text=f"* Hi There  The name's {dispatcher.bot.first_name} \n\nAs  You I'm a next generational group management bot developed by Anki Vector Updates.* "
-            f"\n\n Join [AnkiVectorUpdates](https://t.me/ankivectorUpdates) To Keep Yourself Updated About {dispatcher.bot.first_name}"
+            f"\n\n Join [RioUpdates](https://t.me/riobotsupport) To Keep Yourself Updated About {dispatcher.bot.first_name}"
             f"\n\n I have the normal GROUP MANAGING functions like flood control, a warning system etc but I mainly have the advanced and handy Antispam system and the SIBYL banning system which safegaurds and helps your group from spammers."
             f"\n\nI Can Manage Your Groups Smoothly, With Some Special Features"
             f"\n\nYou Can Know More About Me By Clicking The Below Buttons",
@@ -399,7 +399,7 @@ def AnkiVector_about_callback(update, context):
         query.message.edit_text(
             text=f"* ｢ BASIC HELP 」*"
             f"\nIf You Can Also Add {dispatcher.bot.first_name} To Your Chats By Clicking [Here](http://t.me/{dispatcher.bot.username}?startgroup=true) And Selecting Chat. \n"
-            f"\n\nYou Can get support {dispatcher.bot.first_name} by joining [Anki Vectr Support](https://t.me/AnkiSupport_Official).\n"
+            f"\n\nYou Can get support {dispatcher.bot.first_name} by joining [Rio Support](https://t.me/riogroupsupport).\n"
             f"",
             parse_mode=ParseMode.MARKDOWN,
             disable_web_page_preview=True,
@@ -418,9 +418,9 @@ def AnkiVector_about_callback(update, context):
     elif query.data == "aboutmanu_credit":
         query.message.edit_text(
             text=f"*{dispatcher.bot.first_name} Is the redisigned version of Daisy and Naruto for the best performance.*"
-            f"\n\nBased on [Anki Vector Brother](https://t.me/TheVectorBrotherbot)."
-            f"\n\n{dispatcher.bot.first_name}'s source code was written by Damantha Jasinghe"
-            f"\n\nIf Any Question About {dispatcher.bot.first_name}, \nLet Us Know At @{SUPPORT_CHAT}.",
+            f"\n\nBased on [Rio Manager Project](https://t.me/rio1robot)."
+            f"\n\n{dispatcher.bot.first_name}'s source code was written by Rio"
+            f"\n\nIf Any Question About {dispatcher.bot.first_name}, \nLet Us Know At @RioGroupSupport.",
             parse_mode=ParseMode.MARKDOWN,
             disable_web_page_preview=True,
             reply_markup=InlineKeyboardMarkup(
