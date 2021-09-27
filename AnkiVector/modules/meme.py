@@ -537,8 +537,6 @@ __mod_name__ = "Memes"
 
 PAT_HANDLER = DisableAbleCommandHandler("pat", pat)
 SHOUT_HANDLER = DisableAbleCommandHandler("shout", shout)
-DARE_HANDLER = DisableAbleCommandHandler("dare", dare)
-TRUTH_HANDLER = DisableAbleCommandHandler("truth", truth)
 SANITIZE_HANDLER = DisableAbleCommandHandler("sanitize", sanitize)
 SHRUG_HANDLER = DisableAbleCommandHandler("shrug", shrug)
 DECIDE_HANDLER = DisableAbleMessageHandler(
@@ -571,8 +569,6 @@ GDNIGHT_HANDLER = DisableAbleMessageHandler(
 
 dispatcher.add_handler(PAT_HANDLER)
 dispatcher.add_handler(SHOUT_HANDLER)
-dispatcher.add_handler(DARE_HANDLER)
-dispatcher.add_handler(TRUTH_HANDLER)
 dispatcher.add_handler(SANITIZE_HANDLER)
 dispatcher.add_handler(GBAM_HANDLER)
 dispatcher.add_handler(SHRUG_HANDLER)
