@@ -76,11 +76,11 @@ buttons = [
     ],
     [
         InlineKeyboardButton(text="👑 Developer", url="https://t.me/riio00"),
-        InlineKeyboardButton(text="❔ ʜᴇʟᴘ", url="http://t.me/rio1robot?start=help"),
+        InlineKeyboardButton(text="❔ ʜᴇʟᴘ", url="http://t.me/rio2robot?start=help"),
     ],
     [
         InlineKeyboardButton(
-            text="➕ ᴀᴅᴅ ᴛᴏ ʏᴏᴜʀ ɢʀᴏᴜᴘ ➕", url="t.me/rio1robot?startgroup=true"
+            text="➕ ᴀᴅᴅ ᴛᴏ ʏᴏᴜʀ ɢʀᴏᴜᴘ ➕", url="t.me/rio2robot?startgroup=true"
         ),
     ],
 ]
