@@ -75,7 +75,7 @@ buttons = [
         InlineKeyboardButton(text="🖲 ꜱᴜᴘᴘᴏʀᴛ ɢʀᴏᴜᴘ", url="https://t.me/riogroupsupport"),
     ],
     [
-        InlineKeyboardButton(text="👑 Developer", url="https://t.me/riio00"),
+        InlineKeyboardButton(text="👑 Developer", url="https://t.me/fckualot"),
         InlineKeyboardButton(text="❔ ʜᴇʟᴘ", url="http://t.me/rio2robot?start=help"),
     ],
     [
