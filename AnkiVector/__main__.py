@@ -63,11 +63,11 @@ from AnkiVector.modules.helper_funcs.misc import paginate_modules
 from AnkiVector.modules.helper_funcs.readable_time import get_readable_time
 
 PM_START_TEXT = """
-*Halo! {},*
-*Saya Adalah Group Manager / Music Voice Chat Dengan Fitur Yang Sangat Menarik.*
+*Halo!,*
+*Saya Adalah Rio Robot, Group Manager / Music Voice Chat Dengan Fitur Yang Sangat Menarik.*
 ➖➖➖➖➖➖➖➖➖➖➖➖➖
-• *Uptime:* `{}`
-• `{}` *users, across* `{}` *chats.*
+• Last Version
+• Fell Free Add To Your Group
 ➖➖➖➖➖➖➖➖➖➖➖➖➖
 ➛ Tekan Tombol Help Untuk Mengetahui Fitur Menarik Dari Rio Robot ××
 
