@@ -63,15 +63,19 @@ from AnkiVector.modules.helper_funcs.misc import paginate_modules
 from AnkiVector.modules.helper_funcs.readable_time import get_readable_time
 
 PM_START_TEXT = """
-𝙃𝙖𝙡𝙡𝙤 𝙠𝙖𝙢𝙪, 𝙎𝙖𝙮𝙖 [Rio Manager](https://telegra.ph/file/f579b16dfb374b6235a04.jpg) 🍑
-𝙎𝙖𝙮𝙖 𝙋𝙤𝙬𝙚𝙧𝙛𝙪𝙡𝙡 𝙂𝙧𝙤𝙪𝙥 𝙈𝙖𝙣𝙖𝙜𝙚𝙧 / 𝙈𝙪𝙨𝙞𝙘 𝘽𝙤𝙩 𝘿𝙚𝙣𝙜𝙖𝙣 𝘽𝙚𝙧𝙗𝙖𝙜𝙖𝙞 𝙈𝙤𝙙𝙪𝙡 𝙮𝙖𝙣𝙜 𝙢𝙚𝙣𝙖𝙧𝙞𝙠. 𝘿𝙞𝙗𝙪𝙖𝙩 𝙊𝙡𝙚𝙝 [Team Rio](t.me/RioGroupSupport)
-𝙏𝙪𝙡𝙞𝙨 /help 𝙐𝙣𝙩𝙪𝙠 𝙢𝙚𝙡𝙞𝙝𝙖𝙩 𝙗𝙚𝙧𝙗𝙖𝙜𝙖𝙞 𝙛𝙞𝙩𝙪𝙧 𝙢𝙚𝙣𝙖𝙧𝙞𝙠 𝙙𝙖𝙧𝙞 𝙨𝙖𝙮𝙖 🕹
- 
+*Halo! {},*
+*Saya Adalah Group Manager / Music Voice Chat Dengan Fitur Yang Sangat Menarik.*
+➖➖➖➖➖➖➖➖➖➖➖➖➖
+• *Uptime:* `{}`
+• `{}` *users, across* `{}` *chats.*
+➖➖➖➖➖➖➖➖➖➖➖➖➖
+➛ Tekan Tombol Help Untuk Mengetahui Fitur Menarik Dari Rio Robot ××
+
 """
 
 buttons = [
     [
-        InlineKeyboardButton(text="📌ᴜᴘᴅᴀᴛᴇꜱ ᴄʜᴀɴɴᴇʟ", url="https://t.me/riobotsupport"),
+        InlineKeyboardButton(text="📌ᴜᴘᴅᴀᴛᴇꜱ ᴄʜᴀɴɴᴇʟ", url="https://t.me/rioprojects"),
         InlineKeyboardButton(text="🖲 ꜱᴜᴘᴘᴏʀᴛ ɢʀᴏᴜᴘ", url="https://t.me/riogroupsupport"),
     ],
     [
@@ -86,7 +90,7 @@ buttons = [
 ]
 
 
-ANKIVECTOR_IMG = "https://telegra.ph/file/f579b16dfb374b6235a04.jpg"
+ANKIVECTOR_IMG = "https://telegra.ph/file/e3e923e54b9070d2965f6.jpg"
 
 HELP_STRINGS = f"""
 *Main Commands :* [🤖](https://telegra.ph/file/f579b16dfb374b6235a04.jpg)
@@ -803,7 +807,7 @@ def main():
 
     if SUPPORT_CHAT is not None and isinstance(SUPPORT_CHAT, str):
         try:
-            dispatcher.bot.sendMessage(f"@{SUPPORT_CHAT}", "I am now online!✨")
+            dispatcher.bot.sendMessage(f"@{SUPPORT_CHAT}", "I am now online[!](https://telegra.ph/file/e40667e42631fa6030c6a.mp4)")
         except Unauthorized:
             LOGGER.warning(
                 "Bot isnt able to send message to support_chat, go and check!"
