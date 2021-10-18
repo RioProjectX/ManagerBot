@@ -54,24 +54,24 @@ def warn(
     user: User, chat: Chat, reason: str, message: Message, warner: User = None
 ) -> str:
     if is_user_admin(chat, user.id):
-        # message.reply_text("Damn admins, They are too far to be One Punched!")
+        # message.reply_text("Admin sial, Mereka terlalu jauh untuk menjadi One Punched!")
         return
 
     if user.id in TIGERS:
         if warner:
-            message.reply_text("Tigers cant be warned.")
+            message.reply_text("Pramuka tidak bisa diperingatkan.")
         else:
             message.reply_text(
-                "Tiger triggered an auto warn filter!\n I can't warn tigers but they should avoid abusing this."
+               "Scout memicu filter peringatan otomatis!\n Saya tidak bisa memperingatkan scout tetapi mereka harus menghindari penyalahgunaan ini."
             )
         return
 
     if user.id in WOLVES:
         if warner:
-            message.reply_text("Wolf disasters are warn immune.")
+            message.reply_text("Garrisons are warn immune.")
         else:
             message.reply_text(
-                "Wolf Disaster triggered an auto warn filter!\nI can't warn wolves but they should avoid abusing this."
+                "Garrison triggered an auto warn filter!\nI can't warn garrisons but they should avoid abusing this."
             )
         return
 
@@ -93,7 +93,7 @@ def warn(
             )
 
         else:  # ban
-            chat.kick_member(user.id)
+            chat.ban_member(user.id)
             reply = (
                 f"<code>❕</code><b>Ban Event</b>\n"
                 f"<code> </code><b>•  User:</b> {mention_html(user.id, user.first_name)}\n"
@@ -110,7 +110,7 @@ def warn(
             f"#WARN_BAN\n"
             f"<b>Admin:</b> {warner_tag}\n"
             f"<b>User:</b> {mention_html(user.id, user.first_name)}\n"
-            f"<b>Reason:</b> {reason}\n"
+            f"<b>Alasan:</b> {reason}\n"
             f"<b>Counts:</b> <code>{num_warns}/{limit}</code>"
         )
 
@@ -119,7 +119,7 @@ def warn(
             [
                 [
                     InlineKeyboardButton(
-                        "🔘 Remove warn", callback_data="rm_warn({})".format(user.id)
+                        "🔘 Lepas Peringatan", callback_data="rm_warn({})".format(user.id)
                     )
                 ]
             ]
@@ -138,7 +138,7 @@ def warn(
             f"#WARN\n"
             f"<b>Admin:</b> {warner_tag}\n"
             f"<b>User:</b> {mention_html(user.id, user.first_name)}\n"
-            f"<b>Reason:</b> {reason}\n"
+            f"<b>Alasan:</b> {reason}\n"
             f"<b>Counts:</b> <code>{num_warns}/{limit}</code>"
         )
 
@@ -155,7 +155,6 @@ def warn(
     return log_reason
 
 
-@run_async
 @user_admin_no_reply
 @bot_admin
 @loggable
@@ -187,7 +186,6 @@ def button(update: Update, context: CallbackContext) -> str:
     return ""
 
 
-@run_async
 @user_admin
 @can_restrict
 @loggable
@@ -198,7 +196,11 @@ def warn_user(update: Update, context: CallbackContext) -> str:
     warner: Optional[User] = update.effective_user
 
     user_id, reason = extract_user_and_text(message, args)
-
+    if message.text.startswith("/d") and message.reply_to_message:
+        return warn(message.reply_to_message.from_user, chat, reason, warner, message)
+        message.reply_to_message.delete()
+    if not can_delete(chat, context.bot.id):
+        return ""
     if user_id:
         if (
             message.reply_to_message
@@ -218,7 +220,6 @@ def warn_user(update: Update, context: CallbackContext) -> str:
     return ""
 
 
-@run_async
 @user_admin
 @bot_admin
 @loggable
@@ -245,7 +246,6 @@ def reset_warns(update: Update, context: CallbackContext) -> str:
     return ""
 
 
-@run_async
 def warns(update: Update, context: CallbackContext):
     args = context.args
     message: Optional[Message] = update.effective_message
@@ -259,7 +259,7 @@ def warns(update: Update, context: CallbackContext):
 
         if reasons:
             text = (
-                f"This user has {num_warns}/{limit} warns, for the following reasons:"
+                f"This user has {num_warns}/{limit} memperingatkan, karena alasan berikut:"
             )
             for reason in reasons:
                 text += f"\n • {reason}"
@@ -345,7 +345,6 @@ def remove_warn_filter(update: Update, context: CallbackContext):
     )
 
 
-@run_async
 def list_warn_filters(update: Update, context: CallbackContext):
     chat: Optional[Chat] = update.effective_chat
     all_handlers = sql.get_chat_warn_triggers(chat.id)
@@ -367,12 +366,18 @@ def list_warn_filters(update: Update, context: CallbackContext):
         update.effective_message.reply_text(filter_list, parse_mode=ParseMode.HTML)
 
 
-@run_async
 @loggable
 def reply_filter(update: Update, context: CallbackContext) -> str:
     chat: Optional[Chat] = update.effective_chat
     message: Optional[Message] = update.effective_message
     user: Optional[User] = update.effective_user
+
+    chat_id = str(chat.id)[1:]
+    approve_list = list(REDIS.sunion(f"approve_list_{chat_id}"))
+    is_user_approved = mention_html(user.id, user.first_name)
+
+    if is_user_approved in approve_list:
+        return
 
     if not user:  # Ignore channel
         return
@@ -394,7 +399,6 @@ def reply_filter(update: Update, context: CallbackContext) -> str:
     return ""
 
 
-@run_async
 @user_admin
 @loggable
 def set_warn_limit(update: Update, context: CallbackContext) -> str:
@@ -425,7 +429,6 @@ def set_warn_limit(update: Update, context: CallbackContext) -> str:
     return ""
 
 
-@run_async
 @user_admin
 def set_warn_strength(update: Update, context: CallbackContext):
     args = context.args
@@ -446,7 +449,7 @@ def set_warn_strength(update: Update, context: CallbackContext):
         elif args[0].lower() in ("off", "no"):
             sql.set_warn_strength(chat.id, True)
             msg.reply_text(
-                "Too many warns will now result in a normal punch! Users will be able to join again after."
+                "Terlalu banyak peringatan sekarang akan menghasilkan pukulan normal! Pengguna akan dapat bergabung lagi setelahnya."
             )
             return (
                 f"<b>{html.escape(chat.title)}:</b>\n"
@@ -498,17 +501,17 @@ def __chat_settings__(chat_id, user_id):
 
 
 __help__ = """
- ✪ /warns <userhandle>*:* get a user's number, and reason, of warns.
- ✪ /warnlist*:* list of all current warning filters
-
-*Admins only:*
- ✪ /warn <userhandle>*:* warn a user. After 3 warns, the user will be banned from the group. Can also be used as a reply.
- ✪ /resetwarn <userhandle>*:* reset the warns for a user. Can also be used as a reply.
- ✪ /addwarn <keyword> <reply message>*:* set a warning filter on a certain keyword. If you want your keyword to \
-be a sentence, encompass it with quotes, as such: `/addwarn "very angry" This is an angry user`. 
- ✪ /nowarn <keyword>*:* stop a warning filter
- ✪ /warnlimit <num>*:* set the warning limit
- ✪ /strongwarn <on/yes/off/no>*:* If set to on, exceeding the warn limit will result in a ban. Else, will just punch.
+`/warns <userhandle>`*:* mendapatkan nomor pengguna, dan alasan, dari peringatan.
+  `/warnlist`*:* daftar semua filter peringatan saat ini
+*Hanya Admin :*
+  `/warn <userhandle>`*:* memperingatkan pengguna. Setelah 3 kali peringatan, pengguna akan diblokir dari grup. Bisa juga digunakan sebagai balasan.
+  `/dwarn <userhandle>`*:* memperingatkan pengguna dan menghapus pesan. Setelah 3 kali peringatan, pengguna akan diblokir dari grup. Bisa juga digunakan sebagai balasan.
+  `/resetwarn <userhandle>`*:* mengatur ulang peringatan untuk pengguna. Bisa juga digunakan sebagai balasan.
+  `/addwarn <keyword> <reply message>`*:* mengatur filter peringatan pada kata kunci tertentu. Jika Anda ingin kata kunci Anda \
+menjadi sebuah kalimat, sertakan dengan tanda kutip, seperti: `/addwarn "sangat marah" Ini adalah pengguna yang marah`.
+  `/nowwarn <keyword>`*:* menghentikan filter peringatan
+  `/warnlimit <num>`*:* atur batas peringatan
+  `/strongwarn <on/yes/off/no>`*:* Jika disetel ke aktif, melebihi batas peringatan akan mengakibatkan larangan. Lain, hanya akan menendang.
 """
 
 __mod_name__ = "Warnings"
